@@ -1,0 +1,27 @@
+{
+  "name": "c",
+  "version": "1.0.0",
+  "description": "api automation script with supertest",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "automation"
+  ],
+  "author": "hania",
+  "license": "ISC",
+  "dependencies": {
+    "jsonschema": "^1.4.1"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
+    "supertest": "^7.0.0"
+  },
+  "directories": {
+    "test": "test"
+  }
+}
