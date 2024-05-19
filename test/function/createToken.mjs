@@ -18,9 +18,3 @@ export async function createToken(){
     accessToken = response.body.data.accessToken;
     return accessToken;
 }
-
-// createToken().then(token => {
-//     console.log("Access Token:", token);
-// }).catch(error => {
-//     console.error("Error:", error);
-// });

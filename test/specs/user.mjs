@@ -6,6 +6,8 @@ const baseUrl = 'https://kasir-api.belajarqa.com';
 
 describe("User Test", () => {
     let accessToken;
+    let userId;
+    
     before(async () => {
         accessToken = await createToken();
     });
@@ -24,19 +26,41 @@ describe("User Test", () => {
 
         expect(response.status).to.equal(201);
         expect(response.body.data.name).to.equal("kasir-kasa1");
+
+        // Save the userId for later use
+        userId = response.body.data.userId;
     });
 
-    it("Positive - success get user details", async () => {
-        //menyusul
-        
+    it("Positive - success get user", async () => {
+        const response = await request(baseUrl)
+            .get(`/users`)
+            .set("Authorization", `Bearer ${accessToken}`);
+
+        expect(response.status).to.equal(200);
     });
 
     it("Positive - success update user", async () => {
-        //menyusul
+        const payload = {
+            "name": "kasir-kasa1-updated",
+            "email": "kasa1-updated@example.com"
+        };
+
+        const response = await request(baseUrl)
+            .put(`/users/${userId}`)
+            .send(payload)
+            .set("Authorization", `Bearer ${accessToken}`);
+
+        expect(response.status).to.equal(200);
+        expect(response.body.data.name).to.equal("kasir-kasa1-updated");
     });
 
     it("Positive - success delete user", async () => {
-        //menyusul
+        const response = await request(baseUrl)
+            .delete(`/users/${userId}`)
+            .set("Authorization", `Bearer ${accessToken}`);
+
+        expect(response.status).to.equal(200);
+        expect(response.body.message).to.equal("User berhasil dihapus");
     });
 
 });
